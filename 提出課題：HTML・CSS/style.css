@@ -1,0 +1,125 @@
+/* ブラウザがそれぞれ持っているCSSをリセットするための記述 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6b6b;
+}
+
+header, nav, h2, .main-visual, footer {
+  font-family: "Arial", "Helvetica", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #38b48b;
+}
+
+header {
+  width: 100%; /* 横幅100% */
+  height: 100px; /* 高さ100px */
+  padding: 15px 0;
+  margin: 0 auto;
+  text-align: center;
+  background-color: darkgreen; /* 背景色 ダークグリーン */
+}
+
+header .heading { /* headerタグ内のheadingクラスにのみ反映される */
+  font-size: 32px;
+  margin-top: 10px;
+}
+
+header .heading a {
+  color: #fff;
+}
+
+/* nav */
+.nav-list {
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
+.nav-list-item {
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+  color: #fff;
+}
+
+main {
+  background-color: #ecfcdf; /* 背景色 */
+  padding: 10px 40px 40px;
+}
+.introduction-heading {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.introduction {
+  display: flex;
+}
+
+.image {
+  width: 30%;
+  padding-right: 10px;
+}
+
+.introduction-image {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.introduction-box {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 70%;
+  padding: 10px;
+}
+
+.introduction-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.introduction-row > div {
+  flex-direction: column;
+}
+
+.introduction-title {
+  width: 100px;
+  font-weight: bold;
+}
+
+.introduction-text {
+  height: 40px;
+}
+
+.fab {
+  margin-right: 20px;
+}
+
+footer {
+  width: 100%; /* 横幅いっぱい */
+  height: 100px; /* 高さ100px */
+  background-color: darkgreen; /* 背景色　ダークグリーン */
+  line-height: 100px;
+  text-align: center;
+}
+
+.footer-text {
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .introduction {
+    display: block;
+  }
+  .image {
+    width: 100%;
+  }
+
+  .introduction-box {
+    width: 100%;
+  }
+}
