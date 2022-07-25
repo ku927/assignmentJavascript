@@ -25,27 +25,6 @@
   text-shadow: 2px 2px 0px #666;
 }
 
-.next-button {
-  border-radius: 8px;
-  border :2px solid rgb(111, 111, 236);
-  background-color:rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  padding: 8px;
-  box-shadow :-2px -2px 2px #999 inset;
-  width: 150px;
-}
-
-.next-button:hover {
-  background-color:rgb(111, 111, 236);
-  color: white;
-}
-
-.next-button:active{
-  box-shadow: 2px 2px 2px #999 inset;
-  color: transparent;
-  text-shadow: 2px 2px 0px #666;
-}
-
 .result {
   margin-top: 50px;
   display: none;
