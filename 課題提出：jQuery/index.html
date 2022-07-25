@@ -42,68 +42,71 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-			let fortuneResults = [
-				money=[
-					{stars: "★", detail: "悪い傾向が見られます！財布の紐は絞めておくと吉です！"},
-					{stars: "★★", detail: "まずまず金運です！使いすぎには注意しましょう！"},
-					{stars: "★★★", detail: "最高の金運です！いつの間にかお金が溜まっているかも・・・？"}
-				],
-				work=[
-					{stars: "★", detail: "悪い傾向が見られます！自信過剰にならないように注意しましょう"},
-					{stars: "★★", detail: "まずまず仕事運です！普段通り仕事が進むでしょう！"},
-					{stars: "★★★", detail: "最高の仕事運です！いつも以上にチャンスが巡ってくるかも・・・？"}
-				],
-				health=[
-					{stars: "★", detail: "悪い傾向が見られます！ケガにご注意を・・・"},
-					{stars: "★★", detail: "まずまず健康運です！無理せず体を動かしましょう！"},
-					{stars: "★★★", detail: "最高の健康運です！ランニングの距離を伸ばしても良いですね！"}
-				]
+
+			// データを配列に格納
+			const fortuneResults = [
+				{
+					"money":[
+						{"stars": "★", "detail": "悪い傾向が見られます！財布の紐は絞めておくと吉です！"},
+						{"stars": "★★", "detail": "まずまず金運です！使いすぎには注意しましょう！"},
+						{"stars": "★★★", "detail": "最高の金運です！いつの間にかお金が溜まっているかも・・・？"}
+					]
+				},
+				{
+					"work":[
+						{"stars": "★", "detail": "悪い傾向が見られます！自信過剰にならないように注意しましょう"},
+						{"stars": "★★", "detail": "まずまず仕事運です！普段通り仕事が進むでしょう！"},
+						{"stars": "★★★", "detail": "最高の仕事運です！いつも以上にチャンスが巡ってくるかも・・・？"}
+					]
+				},
+				{
+					"health":[
+						{"stars": "★", "detail": "悪い傾向が見られます！ケガにご注意を・・・"},
+						{"stars": "★★", "detail": "まずまず健康運です！無理せず体を動かしましょう！"},
+						{"stars": "★★★", "detail": "最高の健康運です！ランニングの距離を伸ばしても良いですね！"}
+					]
+				}
 			];
 
-			const setResult = () => {
+			// 運勢を占う！ボタンを押下時
+			$(document).on('click', '.js-fortune-start', function () {
+				for (let title in fortuneResults) {
 
-				let parent;
-				let parentClass;
-				for (let i = 0; i < fortuneResults.length; i++) {
+					// 1~3のランダムな数を取得
+					const rand = Math.floor(Math.random() * 3);
 
-					if (i == 0) {
-						parent = fortuneResults.money;
-						parentClass = ".radius money.title";
-					} else if (i == 1) {
-						parent = fortuneResults.work;
-						parentClass = ".radius work";
-					} else {
-						parent = fortuneResults.health;
-						parentClass = ".radius health";
+					let parent
+					switch (title) {
+						case "0":
+							parent = "money";
+							break;
+						case "1":
+							parent = "work";
+							break;
+						case "2":
+							parent = "health";
+							break;
 					}
 
-					let result;
+					// 占いのスターと文言をそれぞれ定数に格納
+					const fortuneStars = fortuneResults[title][parent][rand]['stars'];
+					const fortuneDetail = fortuneResults[title][parent][rand]['detail'];
 
-					const count = Math.ceil(Math.random() * fortuneResults.length);
-					if(count == 1) {
-						result = parent[0];
-					} if(count == 2) {
-						result = parent[1];
-					} if(count == 3) {
-						result = parent[2];
-					}
-					
-					console.log(parentClass.stars);
-					console.log(result.stars);
+					// resultタグのそれぞれのテキストに取得したスターと文言に変更
+					$('.' + parent + ' .stars').text(fortuneStars);
+					$('.' + parent + ' .detail').text(fortuneDetail);
 				}
-			}
-			
-			$(".start-button").on("click",function () {
+
+				// 結果を表示させる
 				$('.result').show();
-				setResult;
-				$(setResult.parentClass.stars).text(setResult.result.stars);
-				$(parentClass.detail).text(result.detail);
-				$(this).toggleClass('next-button');
-				$('.next-button').text('もう一度占う！');
+				$('.start-button').toggleClass('js-fortune-start').toggleClass('js-fortune-next');
+				$('.start-button').text('もう一度占う！');
 			});
-			$(".next-button").on("click",function () {
+
+			// もう一度占う！ボタンを押下時
+			$(document).on('click', '.js-fortune-next', function () {
 				$('.result').hide();
-				$('.next-button').toggleClass('start-button');
+				$('.start-button').toggleClass('js-fortune-start').toggleClass('js-fortune-next');
 				$('.start-button').text('運勢を占う！');
 			});
 	</script>
